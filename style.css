@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #b1ccdd, #ffcb66);
+}
+
+.dishes {
+    width: 90%;
+    margin: 24px auto;
+    display: flex;
+    flex-wrap: wrap;          /* <- permite ir para a linha de baixo */
+    justify-content: space-around;
+    gap: 60px;
+}
+
+
+.card {
+    position: relative;
+    width: clamp(180px, 30vw, 350px);  /* largura fluida */
+    height: 190px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.15);
+    transition: .5s;
+  flex: 1 1 320px;                   /* base p/ wrap funcionar bem */
+}
+
+
+.card:hover {
+    height: 390px;
+}
+
+.dishes:hover> :not(:hover) {
+    filter: blur(5px);
+    opacity: .6;
+}
+
+.img-box {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.63);
+    overflow: hidden;
+    transition: 0.5s;
+
+}
+
+.card:hover .img-box {
+    width: 250px;
+    height: 250px;
+}
+
+.img-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.card .content .details {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(125px);
+
+}
+
+.card:hover .content .details {
+    transform: translateY(90px);
+}
+
+.card .content .details h2{
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.2;
+}
+
+.card .content .details h2 span {
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: 0.5;
+
+}
+
+.card .content .details .data {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+
+}
+
+.card .content .details .data h3{
+    font-size: 1em;
+    color: #555;
+    line-height: 1.2em;
+    font-weight: 600;
+}
+
+.card .content .details .data h3 span {
+    font-size: 0.85em;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.card .content .details .action-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card .content .details .action-btn button {
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    background: #ffcb66;
+    color: #fff;
+    cursor: pointer;
+}
+
+.card .content .details .action-btn button:nth-child(2) {
+    border: 1px solid #999;
+    color: #999;
+    background-color: #fff;
+}
+
