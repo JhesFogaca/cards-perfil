@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -20,7 +20,8 @@ body {
     width: 90%;
     margin: 24px auto;
     display: flex;
-    flex-wrap: wrap;          /* <- permite ir para a linha de baixo */
+    flex-wrap: wrap;
+    /* <- permite ir para a linha de baixo */
     justify-content: space-around;
     gap: 60px;
 }
@@ -28,18 +29,20 @@ body {
 
 .card {
     position: relative;
-    width: clamp(180px, 30vw, 350px);  /* largura fluida */
+    width: clamp(180px, 30vw, 350px);
+    /* largura fluida */
     height: 190px;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 25px 80px rgba(0,0,0,.15);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .15);
     transition: .5s;
-  flex: 1 1 320px;                   /* base p/ wrap funcionar bem */
+    flex: 1 1 320px;
+    /* base p/ wrap funcionar bem */
 }
 
 
 .card:hover {
-    height: 390px;
+    height: 410px;
 }
 
 .dishes:hover> :not(:hover) {
@@ -56,9 +59,10 @@ body {
     height: 150px;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.63);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.541);
     overflow: hidden;
     transition: 0.5s;
+    border: none;
 
 }
 
@@ -88,23 +92,23 @@ body {
 }
 
 .card .content .details {
-    padding: 40px;
+    padding: 20px;
     text-align: center;
     width: 100%;
     transition: 0.5s;
-    transform: translateY(125px);
+    transform: translateY(105px);
 
 }
 
 .card:hover .content .details {
-    transform: translateY(90px);
+    transform: translateY(95px);
 }
 
-.card .content .details h2{
-    font-size: 1.25em;
+.card .content .details h2 {
+    font-size: 1.35em;
     font-weight: 600;
-    color: #555;
-    line-height: 1.2;
+    color: #414040;
+    line-height: .95;
 }
 
 .card .content .details h2 span {
@@ -121,9 +125,9 @@ body {
 
 }
 
-.card .content .details .data h3{
+.card .content .details .data h3 {
     font-size: 1em;
-    color: #555;
+    color: #3f3f3f;
     line-height: 1.2em;
     font-weight: 600;
 }
@@ -136,25 +140,86 @@ body {
 
 .card .content .details .action-btn {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 30px;
 }
 
 .card .content .details .action-btn button {
-    padding: 10px 30px;
+    padding: 10px 30px 10px 30px;
     border: none;
     outline: none;
     border-radius: 5px;
-    font-size: 1em;
-    font-weight: 500;
+    font-size: .95em;
+    font-weight: 600;
     background: #ffcb66;
     color: #fff;
     cursor: pointer;
 }
 
-.card .content .details .action-btn button:nth-child(2) {
-    border: 1px solid #999;
-    color: #999;
-    background-color: #fff;
+/* ----- MOBILE (touch): usa focus-within ----- */
+@media (hover: none) and (pointer: coarse) {
+
+    /* desliga os efeitos que dependem de hover */
+    .dishes:hover> :not(:hover) {
+        filter: none;
+        opacity: 1;
+    }
+
+    /* estado fechado */
+    .card {
+        height: 190px;
+        transition: .4s;
+    }
+
+    .card .content .details {
+        transform: translateY(105px);
+        transition: .4s;
+    }
+
+    .img-box {
+        width: 150px;
+        height: 150px;
+        transition: .4s;
+    }
+
+    /* estado aberto ao tocar (quando há foco em qualquer filho do card) */
+    .card:focus-within {
+        height: 410px;
+    }
+
+    .card:focus-within .content .details {
+        transform: translateY(95px);
+    }
+
+    .card:focus-within .img-box {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* reset visual do botão .img-box */
+    .img-box {
+        border: 0;
+        padding: 0;
+        background: #fff;
+        /* mantém seu fundo */
+        border-radius: 20px;
+    }
+
+    .img-box:focus {
+        outline: none;
+    }
+
+    /* opcional */
+}
+/* MOBILE: até 768px, mostra 3 por linha */
+@media (max-width: 768px) {
+    .dishes .card:nth-child(n+4) {
+    display: none;   /* esconde 4º, 5º, ... */
+    }
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+    .dishes .card:nth-child(n+4) {
+    display: none;   /* esconde 4º, 5º, ... */
+    }
+}
